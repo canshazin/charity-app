@@ -1,0 +1,169 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --background-color: #ecf0f1;
+  --text-color: #2c3e50;
+  --accent-color: #e74c3c;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath fill='%233498db' fill-opacity='0.05' d='M0 0 C50 20 50 80 0 100 C50 120 150 120 200 100 C150 80 150 20 200 0 C150 20 50 20 0 0'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  color: var(--text-color);
+}
+
+nav {
+  background-color: var(--primary-color);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-left h1 {
+  margin: 0;
+  color: white;
+}
+
+.nav-right a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-right a:hover {
+  color: var(--background-color);
+}
+
+/* Center the plist element */
+/* #plist {
+  width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+/* Make each list item (li) inside the plist look cleaner */
+#plist li {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+/* Ensure spans and buttons are on new lines */
+#plist span,
+#plist button {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Style the button */
+#plist button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#plist button:hover {
+  background-color: #0056b3;
+}
+
+/* NEW: Styling for form labels and inputs */
+.input-label {
+  display: block;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.input-field:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Ensure the form looks good within plist */
+#plist form {
+  display: flex;
+  flex-direction: column;
+}
+
+/*  */
+/*  */
+/* Ensure spans don't overflow */
+#plist span {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+  max-width: 100%; /* Prevent span from overflowing the container */
+  word-wrap: break-word; /* Break long words onto the next line */
+  white-space: normal; /* Ensure normal text wrapping */
+}
+
+/* Add space between list items */
+#plist li {
+  list-style-type: none;
+  margin-bottom: 30px; /* Add space between each organization */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%; /* Ensure li doesn't overflow the parent container */
+}
+
+/* Adjust button to have space around it */
+#plist button {
+  display: block;
+  margin-top: 10px;
+}
+
+/* Keep input width within the list item */
+.input-field {
+  width: 100%;
+  max-width: 350px; /* Set a maximum width for the input field */
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: white;
+}
+#plist {
+  width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  background-color: transparent; /* No background color */
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+    <link rel="stylesheet" href="expense.css" />
+    <script src="https://www.paypal.com/sdk/js?client-id=AWdPOH7_TRxSdeVcjxmhWj6roxAPCiUEJyJLSewJfVlnmHkfMkzcPvgNF3fBrnG1pIoRAblORMNbqnba&currency=USD&intent=capture"></script>
+  </head>
+  <body>
+    <div id="prime_div"></div>
+  
+    <form id="add_expense_form">
+      <label for="amount">Expense Amount : </label>
+      <input type="number" id="amount" name="amount" required />
+      <label for="category"> Choose Category : </label>
+      <select id="category" name="category" required>
+        <option value="fuel">Fuel</option>
+        <option value="electricity">Electricity</option>
+        <option value="movie">Movie</option>
+        <option value="food">Food</option>
+      </select>
+      <label for="description"> Description</label>
+      <input type="text" id="description" name="description" required />
+      <button>Add Expense</button>
+    </form>
+    <button id="premium_btn" onclick="">Buy Premium</button>
+   
+    
+    <a href="../report/report.html" target="_blank">    <button id="view_report_btn"  style="visibility: hidden">View Report</button></a>
+  </a>
+
+  <button
+      id="download_btn"
+     
+      style="visibility: hidden"
+    >
+      Download Expenses
+    </button>
+    <button
+      id="leaderboard_btn"
+      
+      style="visibility: hidden"
+    >
+      Show leaderboard
+    </button>
+
+
+    
+
+    <div id="paypal_button_container"></div>
+    <div id="expense_list_css">
+      
+   
+    <h3>Expenses :</h3>
+    <select id="page_limit" name="page_limit" >
+      <option value='5'>5</option>
+      <option value='10' >10</option>
+      <option value='20'>20</option>
+      <option value='30'>30</option>
+      <option value='50'>50</option>
+      <option value='100'>100</option>
+    </select>
+    <table id="expense_list">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Expense</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th></th>
+          <!-- Empty header for 4th column -->
+        </tr>
+      </thead>
+    </table>
+    <div id="pagination"></div>
+  </div>
+    <h3 id="leaderboard_heading" style="visibility: hidden">leaderBoard :</h3>
+   
+    <table id="leaderboard_list" style="visibility: hidden">
+     </table>
+     <div id="download_history">
+     <h3 id="download_list_heading" style="visibility: hidden;">Download History</h3>
+     <table id="download_list" style="visibility: hidden">
+    </table>
+  </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+  <script src="expense.js"></script>
+
+</html>

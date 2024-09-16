@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UnityAid - Join Our Community</title>
+    <link rel="stylesheet" href="/signup/signup.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-left">
+        <h1>UnityAid</h1>
+      </div>
+      <div class="nav-right">
+        <a href="#about">About</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <form id="signup">
+        <h2>Join UnityAid</h2>
+        <label for="user_name">Name: </label>
+        <input type="text" name="user_name" id="user_name" required />
+        <label for="user_email">Email: </label>
+        <input type="email" name="user_email" id="user_email" required />
+        <label for="user_password">Password: </label>
+        <input
+          type="password"
+          name="user_password"
+          id="user_password"
+          required
+        />
+        <button type="submit">Sign Up</button>
+        <a href="../login/login.html" class="login-link"
+          >Already have an account? Log In</a
+        >
+        <a href="../signupOrg/signupOrg.html" class="sinupOrg-link"
+          >Register an organisation</a
+        >
+      </form>
+      <div id="warning"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+    <script src="/signup/signup.js"></script>
+  </body>
+</html>
