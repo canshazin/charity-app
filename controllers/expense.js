@@ -11,8 +11,8 @@ const PDFDocument = require("pdfkit");
 exports.donateController = async (req, res) => {
   try {
     const rzp = new Razorpay({
-      key_id: PROCESS.ENV.RAZORPAY_KEY_ID,
-      key_secret: PROCESS.ENV.RAZORPAY_SECRET_KEY,
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_SECRET_KEY,
     });
 
     const amount = parseInt(req.query.amount) * 100;
@@ -103,12 +103,18 @@ exports.updateTransaction = async (req, res) => {
         where: { orderid: order_id },
       }
     );
+
     const successDonation = await Donation.findOne({
       where: { orderid: order_id },
     });
+
     const organization = await Organization.findOne({
       where: { id: successDonation.organizationId },
     });
+    await Organization.update(
+      { amount: organization.amount + successDonation.amount },
+      { where: { id: organization.id } }
+    );
     const sender = await User.findOne({
       where: { id: successDonation.userId },
     });

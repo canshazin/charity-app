@@ -56,6 +56,7 @@ exports.signupOrg = async (req, res, next) => {
           contactEmail: user.email,
           isApproved: false,
           amount: 0,
+          goal: user.goal,
           userId: user_created.id,
         });
         res.json({ success: true, msg: "registration request sent" });

@@ -41,6 +41,10 @@ const Organization = sequelize.define("organization", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  goal: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
 });
 
 module.exports = Organization;

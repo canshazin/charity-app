@@ -8,6 +8,7 @@ const user_password = document.querySelector("#user_password");
 const user_desc = document.querySelector("#user_desc");
 const user_loc = document.querySelector("#user_loc");
 const user_miss = document.querySelector("#user_miss");
+const user_goal = document.querySelector("#user_goal");
 
 const warning = document.querySelector("#warning");
 signup.addEventListener("submit", async (event) => {
@@ -21,6 +22,7 @@ signup.addEventListener("submit", async (event) => {
       description: user_desc.value,
       location: user_desc.value,
       mission: user_miss.value,
+      goal: user_goal.value,
     };
     const result = await axios.post(`${url}/org/signup`, user);
     console.log(result.data);

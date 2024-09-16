@@ -160,6 +160,10 @@ function addOrganizationsToUi(data) {
 
   const span5 = document.createElement("span");
   span5.textContent = `Contact Email : ${data.contactEmail}`;
+  const span6 = document.createElement("span");
+  span6.textContent = `Goal amount : ${data.goal}`;
+  const span7 = document.createElement("span");
+  span7.textContent = `Total amount received : ${data.amount}`;
 
   const donateInput = document.createElement("input");
   donateInput.setAttribute("type", "number");
@@ -225,6 +229,8 @@ function addOrganizationsToUi(data) {
   li.appendChild(span3);
   li.appendChild(span4);
   li.appendChild(span5);
+  li.appendChild(span6);
+  li.appendChild(span7);
   li.appendChild(donateInput);
 
   li.appendChild(button);
