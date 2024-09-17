@@ -167,3 +167,36 @@ nav {
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   background-color: transparent; /* No background color */
 }
+
+/* Ensure the list item takes the full viewport */
+#list {
+  /* height: 100%;
+  width: 100%; */
+  list-style-type: none; /* Remove bullet point */
+}
+
+/* Make the list item occupy the full screen */
+#fullscreen-item {
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  display: flex;
+  flex-direction: column; /* Stack spans vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+
+  padding: 20px;
+}
+
+/* Make each span act like a block element to take up a full line */
+#fullscreen-item span {
+  display: block; /* Make each span take up its own line */
+  font-size: 1.2em; /* Increase font size */
+  margin-bottom: 10px; /* Add some space between lines */
+  width: 100%; /* Ensure it takes the full width */
+  text-align: left; /* Align the text to the left */
+}
+
+/* Optional: You can bold labels or highlight specific parts using CSS */
+#fullscreen-item span strong {
+  color: #2c3e50; /* Darker color for emphasis */
+}

@@ -3,21 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Document</title>
+    <title>UnityAid - User Dashboard</title>
+    <link rel="stylesheet" href="/org/org.css" />
   </head>
   <body>
-    <form id="reset_password">
-      <label for="user_email">E:mail: </label>
-      <input type="email" name="user_email" id="user_email" required />
+    <nav>
+      <div class="nav-left">
+        <h1>UnityAid</h1>
+      </div>
+      <div class="nav-right">
+        <a href="#profile" id="profile">Profile</a>
+        <a href="#organizations" id="organizations">Organizations</a>
+        <a href="#donations" id="donations">Donation Sent</a>
+        <a href="#donationsRec" id="donationsRec">Donation Received</a>
 
-      <label for="user_password">New Password: </label>
-      <input type="password" name="user_password" id="user_password" required />
+        <a href="#logout" id="logout">Logout</a>
+      </div>
+    </nav>
 
-      <button type="submit">Update Password</button>
-    </form>
-
-    <div id="warning"></div>
+    <ul id="plist" style="display: none"></ul>
+    <ul id="list"></ul>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="/org/org.js"></script>
 </html>

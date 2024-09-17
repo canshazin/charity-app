@@ -8,6 +8,7 @@ const updates = document.querySelector("#updates");
 const logout = document.querySelector("#logout");
 
 const ul = document.querySelector("#plist");
+const ulFullscreen = document.querySelector("#list");
 
 profile.addEventListener("click", async (event) => {
   try {
@@ -93,7 +94,7 @@ profile.addEventListener("click", async (event) => {
             );
             console.log(result.data);
             if (result.data.success == false) {
-              alert("Username update..." + result.data.msg);
+              alert("Username updated..." + result.data.msg);
             } else {
               alert(result.data.msg);
               window.location.reload();
@@ -176,6 +177,7 @@ function addOrganizationsToUi(data) {
   const button = document.createElement("button");
   button.textContent = "Donate";
   button.dataset.oid = data.id;
+
   button.addEventListener("click", async (event) => {
     try {
       event.preventDefault();
@@ -236,6 +238,10 @@ function addOrganizationsToUi(data) {
   li.appendChild(button);
   ul.appendChild(li);
   ul.style.display = "block";
+  // li.addEventListener("click", async (event) => {
+  //   event.preventDefault();
+  //   newpage(li);
+  // });
 }
 donations.addEventListener("click", async (event) => {
   event.preventDefault();
@@ -346,6 +352,11 @@ function addDonationsToUi(data) {
   ul.appendChild(li);
   ul.style.display = "block";
 }
+// function newpage(element) {
+//   element.id = "fullscreen-item";
+//   ul.innerHTML = "";
+//   ulFullscreen.appendChild(element);
+// }
 
 // const donateInput = document.createElement("input");
 // donateInput.setAttribute("type", "number");

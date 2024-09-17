@@ -30,6 +30,11 @@ router.put(
   middlewares.authenticate,
   expense_controller.editUserProfile
 );
+router.put(
+  "/org/edit-profile",
+  middlewares.authenticate,
+  expense_controller.editOrgProfile
+);
 
 router.get(
   "/user/donate",
@@ -53,9 +58,25 @@ router.get(
   expense_controller.getAllDonations
 );
 router.get(
+  "/user/get-received-donations",
+  middlewares.authenticate,
+  expense_controller.getReceivedDonations
+);
+router.get(
   "/user/get-all-updates",
   middlewares.authenticate,
   expense_controller.getAllUpdates
+);
+router.post(
+  "/user/send-update",
+  middlewares.authenticate,
+  expense_controller.sendUpdate
+);
+
+router.get(
+  "/org/profile",
+  middlewares.authenticate,
+  expense_controller.getOrgProfile
 );
 
 // password reset routes

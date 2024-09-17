@@ -17,8 +17,7 @@ login.addEventListener("submit", async (event) => {
     const result_data = result.data;
 
     if (result_data.success == true) {
-      alert(`${result_data.message}`);
-      console.log(result_data.token);
+      console.log(result_data);
       localStorage.setItem("token", result_data.token);
       // window.location.href = "../expense/expense.html";
       // await axios.get(`${url}/user/role-redirect`, {
@@ -28,11 +27,12 @@ login.addEventListener("submit", async (event) => {
       // });
 
       console.log("logged successfully");
-      if (result.data.role == "admin") {
+      alert(`${result_data.message}`);
+      if (result.data.role === "admin") {
         window.location.href = "../admin/admin.html";
-      } else if (result.data.role == "org") {
+      } else if (result.data.role === "org") {
         window.location.href = "../org/org.html";
-      } else if (result.data.role == "user") {
+      } else if (result.data.role === "user") {
         window.location.href = "../user/user.html";
       }
     } else {
