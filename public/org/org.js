@@ -6,13 +6,33 @@ const donations = document.querySelector("#donations");
 const donationsRec = document.querySelector("#donationsRec");
 const organizations = document.querySelector("#organizations");
 const updates = document.querySelector("#updates");
+const searchBar = document.querySelector("#searchBar");
 const logout = document.querySelector("#logout");
 
 const ul = document.querySelector("#plist");
+searchBar.addEventListener("keyup", function () {
+  const searchTerm = this.value.toLowerCase().trim();
+  const items = ul.getElementsByTagName("li");
+
+  for (let item of items) {
+    const spans = item.getElementsByTagName("span");
+    let found = false;
+
+    for (let span of spans) {
+      if (span.textContent.toLowerCase().includes(searchTerm)) {
+        found = true;
+        break;
+      }
+    }
+
+    item.style.display = found ? "" : "none";
+  }
+});
 
 profile.addEventListener("click", async (event) => {
   try {
     event.preventDefault();
+    searchBar.style.visibility = "hidden";
     const user = await axios.get(`${url}/org/profile`, {
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -215,6 +235,7 @@ async function transactionFail(order_id, payment_id) {
 
 organizations.addEventListener("click", async (event) => {
   event.preventDefault();
+  searchBar.style.visibility = "visible";
   const user = await axios.get(`${url}/user/organizations`, {
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -329,6 +350,7 @@ function addOrganizationsToUi(data) {
 }
 donations.addEventListener("click", async (event) => {
   event.preventDefault();
+  searchBar.style.visibility = "visible";
   const allDonations = await axios.get(`${url}/user/get-all-donations`, {
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -538,6 +560,7 @@ function addDonationsToUi(data) {
 //
 donationsRec.addEventListener("click", async (event) => {
   event.preventDefault();
+  searchBar.style.visibility = "visible";
   const allDonations = await axios.get(`${url}/user/get-received-donations`, {
     headers: {
       Authorization: localStorage.getItem("token"),
