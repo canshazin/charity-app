@@ -45,10 +45,11 @@ nav {
 
 .container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Change layout to row */
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   min-height: calc(100vh - 70px);
+  padding: 2%; /* Add padding on both sides */
 }
 
 #signup {

@@ -31,7 +31,7 @@ exports.forgot_password = async (req, res, next) => {
 
     sendSmtpEmail.sender = {
       email: "shazin.cans99@gmail.com",
-      name: "Expense Tracker Sharpener",
+      name: "UnityAid",
     };
     sendSmtpEmail.to = [{ email: req.body.user_email }];
     sendSmtpEmail.subject = "Password Reset";

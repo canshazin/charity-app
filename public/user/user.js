@@ -9,7 +9,7 @@ const searchBar = document.querySelector("#searchBar");
 const logout = document.querySelector("#logout");
 
 const ul = document.querySelector("#plist");
-// const ulFullscreen = document.querySelector("#list");
+
 searchBar.addEventListener("keyup", function () {
   const searchTerm = this.value.toLowerCase().trim();
   const items = ul.getElementsByTagName("li");
@@ -261,11 +261,7 @@ function addOrganizationsToUi(data) {
   li.appendChild(button);
   ul.appendChild(li);
   ul.style.display = "block";
-  // li.addEventListener("click", async (event) => {
-  //   event.preventDefault();
-  //   newpage(li);
-  // });
-}
+
 donations.addEventListener("click", async (event) => {
   event.preventDefault();
   searchBar.style.visibility = "visible";
@@ -377,20 +373,12 @@ function addDonationsToUi(data) {
   ul.appendChild(li);
   ul.style.display = "block";
 }
-// function newpage(element) {
-//   element.id = "fullscreen-item";
-//   ul.innerHTML = "";
-//   ulFullscreen.appendChild(element);
-// }
-
-// const donateInput = document.createElement("input");
-// donateInput.setAttribute("type", "number");
-// donateInput.setAttribute("id", "donateInput");
-// donateInput.setAttribute("name", "donateInput");
-
-// donateInput.placeholder = "Enter amount ...Not more than Rs 50,000";
-// donateInput.classList.add("input-field"); // Add class for styling
-
-// const button = document.createElement("button");
-// button.textContent = "Donate";
-// button.dataset.oid = data.id;
+logout.addEventListener("click", (event) => {
+  event.preventDefault();
+  localStorage.removeItem("token");
+  window.location.href = "../login/login.html";
+});
+window.addEventListener("DOMContentLoaded", (event) => {
+  event.preventDefault();
+  organizations.click();
+});

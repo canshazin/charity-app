@@ -16,6 +16,7 @@ async function forgot_password(e) {
     });
     if (result.data.success == true) {
       alert("Mail sent to user email");
+      window.location.href = "../login/login.html";
     }
     console.log(result.data);
   } catch (err) {

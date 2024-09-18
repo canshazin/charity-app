@@ -405,7 +405,7 @@ function addDonationsToUi(data) {
       event.preventDefault();
 
       const allUpdates = await axios.get(
-        `${url}/user/get-all-updates?did=${data.id}`,
+        `${url}/admin/get-all-updates?did=${data.id}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -563,13 +563,14 @@ function addNonApprovedOrganizationsToUi(data) {
   console.log(li);
   console.log(ul);
   ul.appendChild(li);
-  // if (data.user.isBlocked == true) {
-  //   spanAcc.textContent = `Account Status : Blocked`;
-  //   block.style.display = "none";
-  //   unblock.style.display = "block";
-  // } else if (data.user.isBlocked == false) {
-  //   spanAcc.textContent = `Account Status : Active`;
-  //   block.style.display = "block";
-  //   unblock.style.display = "none";
-  // }
 }
+logout.addEventListener("click", (event) => {
+  event.preventDefault();
+  localStorage.removeItem("token");
+  window.location.href = "../login/login.html";
+});
+
+window.addEventListener("DOMContentLoaded", (event) => {
+  event.preventDefault();
+  organizations.click();
+});

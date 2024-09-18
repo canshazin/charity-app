@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UnityAid - Connecting Hearts, Changing Lives</title>
-    <link rel="stylesheet" href="login.css" />
+
+    <link rel="stylesheet" href="/login/login.css" />
   </head>
   <body>
     <nav>
@@ -18,8 +18,8 @@
     </nav>
 
     <div class="container">
+   
       <form id="login">
-        <h2>Welcome Back</h2>
         <label for="user_email">Email:</label>
         <input type="email" name="user_email" id="user_email" required />
         <label for="user_password">Password:</label>
@@ -33,12 +33,16 @@
         <a href="../signup/signup.html" class="signup-link"
           >New User? Sign Up</a
         >
+        <a href="#" id="forgot_password_btn" class="signup-link name="forgot_password_btn">
+          Forgot Password
+        </a>
       </form>
-      <button id="forgot_password_btn" name="forgot_password_btn">
+      <!-- <button id="forgot_password_btn" class="container"name="forgot_password_btn">
         Forgot Password
-      </button>
+      </button> -->
       <div id="warning"></div>
     </div>
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
     <script src="/login/login.js"></script>

@@ -238,7 +238,7 @@ organizations.addEventListener("click", async (event) => {
   event.preventDefault();
   searchBar.style.visibility = "visible";
   searchBar.value = "";
-  const user = await axios.get(`${url}/user/organizations`, {
+  const user = await axios.get(`${url}/org/organizations`, {
     headers: {
       Authorization: localStorage.getItem("token"),
     },
@@ -354,7 +354,7 @@ donations.addEventListener("click", async (event) => {
   event.preventDefault();
   searchBar.style.visibility = "visible";
   searchBar.value = "";
-  const allDonations = await axios.get(`${url}/user/get-all-donations`, {
+  const allDonations = await axios.get(`${url}/org/get-all-donations`, {
     headers: {
       Authorization: localStorage.getItem("token"),
     },
@@ -408,7 +408,7 @@ function addDonationsToUi(data) {
       event.preventDefault();
 
       const allUpdates = await axios.get(
-        `${url}/user/get-all-updates?did=${data.id}`,
+        `${url}/org/get-all-updates?did=${data.id}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -461,111 +461,12 @@ function addDonationsToUi(data) {
   ul.appendChild(li);
   ul.style.display = "block";
 }
-function addDonationsToUi(data) {
-  const li = document.createElement("li");
 
-  const span1 = document.createElement("span");
-  span1.textContent = `From  : ${data.user.uname}(${data.user.email})`;
-
-  const span2 = document.createElement("span");
-  span2.textContent = `To : ${data.organization.oname}(${data.organization.contactEmail})`;
-
-  const span3 = document.createElement("span");
-  span3.textContent = `Amount : Rs ${data.amount}`;
-
-  const span4 = document.createElement("span");
-  span4.textContent = `payment id : ${data.paymentId}`;
-
-  const span5 = document.createElement("span");
-  span5.textContent = `status : ${data.status}`;
-
-  const span6 = document.createElement("span");
-  const date = new Date(data.createdAt).toLocaleString("en-US", {
-    timeZone: "Asia/Kolkata",
-  });
-  span6.textContent = `date : ${date}`;
-
-  const link = document.createElement("a");
-  link.href = data.url; // S3 image URL
-  link.target = "_blank"; // Open in new tab
-  link.style.display = "none"; // Hide the anchor element
-
-  const button = document.createElement("button");
-  button.innerText = "Download Receipt";
-  button.addEventListener("click", function () {
-    link.click(); // Simulate clicking the link
-  });
-  const viewUpdate = document.createElement("button");
-  viewUpdate.dataset.did = data.id;
-  viewUpdate.innerText = "Check  for  Update ";
-  let check = 0;
-  viewUpdate.addEventListener("click", async (event) => {
-    try {
-      event.preventDefault();
-
-      const allUpdates = await axios.get(
-        `${url}/user/get-all-updates?did=${data.id}`,
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-          },
-        }
-      );
-      console.log(allUpdates.data);
-
-      if (allUpdates.data.length == 0) {
-        alert("No updates...");
-      } else {
-        // ul.innerHTML = "";
-        const liMsg = document.createElement("li");
-        if (check == 0) {
-          allUpdates.data.forEach((update) => {
-            const span = document.createElement("span");
-            span.innerHTML = `
-    <span style="color:#2980b9;">
-      ${new Date(update.createdAt).toLocaleString("en-US", {
-        timeZone: "Asia/Kolkata",
-      })}
-    </span> ${update.msg}
-  `;
-            liMsg.appendChild(span);
-
-            console.log(event.target.parentNode);
-
-            // ul.appendChild(liMsg);
-          });
-          event.target.parentNode.appendChild(liMsg);
-          check = 1;
-        } else {
-          check = 0;
-          event.target.parentNode.lastChild.remove();
-        }
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  });
-  li.appendChild(span1);
-  li.appendChild(span2);
-  li.appendChild(span3);
-  li.appendChild(span4);
-  li.appendChild(span5);
-  li.appendChild(span6);
-
-  li.appendChild(button);
-  li.appendChild(viewUpdate);
-  ul.appendChild(li);
-  ul.style.display = "block";
-}
-//
-//
-//
-//
 donationsRec.addEventListener("click", async (event) => {
   event.preventDefault();
   searchBar.style.visibility = "visible";
   searchBar.value = "";
-  const allDonations = await axios.get(`${url}/user/get-received-donations`, {
+  const allDonations = await axios.get(`${url}/org/get-received-donations`, {
     headers: {
       Authorization: localStorage.getItem("token"),
     },
@@ -685,7 +586,7 @@ function addReceivedDonationsToUi(data) {
       const content = { msg: updateInput.value, did: data.id };
       if (updateInput.value.length > 0) {
         const updateStatus = await axios.post(
-          `${url}/user/send-update`,
+          `${url}/org/send-update`,
           content,
           {
             headers: {
@@ -719,3 +620,12 @@ function addReceivedDonationsToUi(data) {
   ul.appendChild(li);
   ul.style.display = "block";
 }
+logout.addEventListener("click", (event) => {
+  event.preventDefault();
+  localStorage.removeItem("token");
+  window.location.href = "../login/login.html";
+});
+window.addEventListener("DOMContentLoaded", (event) => {
+  event.preventDefault();
+  organizations.click();
+});

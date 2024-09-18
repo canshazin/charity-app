@@ -1,148 +1,24 @@
 const entry_controller = require("../controllers/entry.js");
 const reset_password_controller = require("../controllers/reset_password.js");
 const expense_controller = require("../controllers/expense.js");
-const paypal_controller = require("../controllers/paypal.js");
-const premium_controller = require("../controllers/premium.js");
+const razorpayController = require("../controllers/razorpay.js");
+const userController = require("../controllers/user.js");
+
+const organizationController = require("../controllers/organization.js");
+const adminController = require("../controllers/admin.js");
 const misc_controller = require("../controllers/misc.js");
 const middlewares = require("../middlewares/auth.js");
 
 const express = require("express");
 const router = express.Router();
 
-// Entry routes
+//----------------------- Entry routes---------------
+
 router.post("/user/signup", entry_controller.signup);
-router.post("/org/signup", entry_controller.signupOrg);
 router.post("/user/login", entry_controller.login);
+router.post("/org/signup", entry_controller.signupOrg);
 
-router.get(
-  "/user/profile",
-  middlewares.authenticate,
-  expense_controller.getUserProfile
-);
-
-router.get(
-  "/admin/profile",
-  middlewares.authenticate,
-  expense_controller.getAdminProfile
-);
-router.get(
-  "/user/organizations",
-  middlewares.authenticate,
-  expense_controller.getApprovedOrganizations
-);
-router.get(
-  "/admin/get-all-organizations",
-  middlewares.authenticate,
-  expense_controller.getAllOrganizations
-);
-router.get(
-  "/admin/get-non-approved-organizations",
-  middlewares.authenticate,
-  expense_controller.getNonApprovedOrganizations
-);
-router.get(
-  "/admin/get-all-users",
-  middlewares.authenticate,
-  expense_controller.getAllUsers
-);
-router.get(
-  "/admin/block-user",
-  middlewares.authenticate,
-  expense_controller.blockUser
-);
-router.get(
-  "/admin/unblock-user",
-  middlewares.authenticate,
-  expense_controller.unblockUser
-);
-
-router.get(
-  "/admin/block-organization",
-  middlewares.authenticate,
-  expense_controller.blockOrganization
-);
-router.get(
-  "/admin/unblock-organization",
-  middlewares.authenticate,
-  expense_controller.unblockOrganization
-);
-
-router.get(
-  "/admin/approve-organization",
-  middlewares.authenticate,
-  expense_controller.approveOrganization
-);
-router.get(
-  "/admin/reject-organization",
-  middlewares.authenticate,
-  expense_controller.rejectOrganization
-);
-
-router.put(
-  "/user/edit-profile",
-  middlewares.authenticate,
-  expense_controller.editUserProfile
-);
-router.put(
-  "/admin/edit-profile",
-  middlewares.authenticate,
-  expense_controller.editAdminProfile
-);
-router.put(
-  "/org/edit-profile",
-  middlewares.authenticate,
-  expense_controller.editOrgProfile
-);
-
-router.get(
-  "/user/donate",
-  middlewares.authenticate,
-  expense_controller.donateController
-);
-
-router.post(
-  "/user/updatetransactionstatus",
-  middlewares.authenticate,
-  expense_controller.updateTransaction
-);
-router.post(
-  "/user/failedTransaction",
-  middlewares.authenticate,
-  expense_controller.failedTransaction
-);
-router.get(
-  "/user/get-all-donations",
-  middlewares.authenticate,
-  expense_controller.getAllDonations
-);
-router.get(
-  "/admin/get-all-donations",
-  middlewares.authenticate,
-  expense_controller.adminGetAllDonations
-);
-router.get(
-  "/user/get-received-donations",
-  middlewares.authenticate,
-  expense_controller.getReceivedDonations
-);
-router.get(
-  "/user/get-all-updates",
-  middlewares.authenticate,
-  expense_controller.getAllUpdates
-);
-router.post(
-  "/user/send-update",
-  middlewares.authenticate,
-  expense_controller.sendUpdate
-);
-
-router.get(
-  "/org/profile",
-  middlewares.authenticate,
-  expense_controller.getOrgProfile
-);
-
-// password reset routes
+//---------------------forgot password routes-------------
 router.post(
   "/password/forgotpassword",
   reset_password_controller.forgot_password
@@ -156,6 +32,188 @@ router.get(
 router.post(
   "/password/resetpassword/updatepassword",
   reset_password_controller.update_password
+);
+
+//------------------------transaction routes---------------------
+router.get(
+  "/user/donate",
+  middlewares.authenticate,
+  razorpayController.donateController
+);
+
+router.post(
+  "/user/updatetransactionstatus",
+  middlewares.authenticate,
+  razorpayController.updateTransaction
+);
+router.post(
+  "/user/failedTransaction",
+  middlewares.authenticate,
+  razorpayController.failedTransaction
+);
+
+//-----------------------------user routes-------------------------
+
+//profile
+router.get(
+  "/user/profile",
+  middlewares.authenticate,
+  userController.getUserProfile
+);
+router.put(
+  "/user/edit-profile",
+  middlewares.authenticate,
+  userController.editUserProfile
+);
+
+//organization
+router.get(
+  "/user/organizations",
+  middlewares.authenticate,
+  userController.getApprovedOrganizations
+);
+
+//donation
+
+router.get(
+  "/user/get-all-donations",
+  middlewares.authenticate,
+  userController.getAllDonations
+);
+router.get(
+  "/user/get-all-updates",
+  middlewares.authenticate,
+  userController.getAllUpdates
+);
+
+//-------------------------------organization routes--------------------
+
+//profile
+router.get(
+  "/org/profile",
+  middlewares.authenticate,
+  organizationController.getOrgProfile
+);
+router.put(
+  "/org/edit-profile",
+  middlewares.authenticate,
+  organizationController.editOrgProfile
+);
+
+//organizations
+
+router.get(
+  "/org/organizations",
+  middlewares.authenticate,
+  organizationController.getApprovedOrganizations
+);
+
+//donation sent
+
+router.get(
+  "/org/get-all-donations",
+  middlewares.authenticate,
+  organizationController.getAllDonations
+);
+router.get(
+  "/org/get-all-updates",
+  middlewares.authenticate,
+  organizationController.getAllUpdates
+);
+
+//donation received
+router.get(
+  "/org/get-received-donations",
+  middlewares.authenticate,
+  organizationController.getReceivedDonations
+);
+router.post(
+  "/org/send-update",
+  middlewares.authenticate,
+  organizationController.sendUpdate
+);
+
+//-------------------------------admin---------------------
+
+//profile
+
+router.get(
+  "/admin/profile",
+  middlewares.authenticate,
+  adminController.getAdminProfile
+);
+
+router.put(
+  "/admin/edit-profile",
+  middlewares.authenticate,
+  adminController.editAdminProfile
+);
+
+//all users
+
+router.get(
+  "/admin/get-all-users",
+  middlewares.authenticate,
+  adminController.getAllUsers
+);
+router.get(
+  "/admin/block-user",
+  middlewares.authenticate,
+  adminController.blockUser
+);
+router.get(
+  "/admin/unblock-user",
+  middlewares.authenticate,
+  adminController.unblockUser
+);
+
+//all organizations
+
+router.get(
+  "/admin/get-all-organizations",
+  middlewares.authenticate,
+  adminController.getAllOrganizations
+);
+router.get(
+  "/admin/block-organization",
+  middlewares.authenticate,
+  adminController.blockOrganization
+);
+router.get(
+  "/admin/unblock-organization",
+  middlewares.authenticate,
+  adminController.unblockOrganization
+);
+
+//all donations
+router.get(
+  "/admin/get-all-donations",
+  middlewares.authenticate,
+  adminController.adminGetAllDonations
+);
+router.get(
+  "/admin/get-all-updates",
+  middlewares.authenticate,
+  adminController.getAllUpdates
+);
+
+//approvals
+router.get(
+  "/admin/get-non-approved-organizations",
+  middlewares.authenticate,
+  adminController.getNonApprovedOrganizations
+);
+
+router.get(
+  "/admin/approve-organization",
+  middlewares.authenticate,
+  adminController.approveOrganization
+);
+
+router.get(
+  "/admin/reject-organization",
+  middlewares.authenticate,
+  adminController.rejectOrganization
 );
 
 // home and invalid routes
