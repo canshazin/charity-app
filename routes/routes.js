@@ -19,16 +19,74 @@ router.get(
   middlewares.authenticate,
   expense_controller.getUserProfile
 );
+
+router.get(
+  "/admin/profile",
+  middlewares.authenticate,
+  expense_controller.getAdminProfile
+);
 router.get(
   "/user/organizations",
   middlewares.authenticate,
   expense_controller.getApprovedOrganizations
+);
+router.get(
+  "/admin/get-all-organizations",
+  middlewares.authenticate,
+  expense_controller.getAllOrganizations
+);
+router.get(
+  "/admin/get-non-approved-organizations",
+  middlewares.authenticate,
+  expense_controller.getNonApprovedOrganizations
+);
+router.get(
+  "/admin/get-all-users",
+  middlewares.authenticate,
+  expense_controller.getAllUsers
+);
+router.get(
+  "/admin/block-user",
+  middlewares.authenticate,
+  expense_controller.blockUser
+);
+router.get(
+  "/admin/unblock-user",
+  middlewares.authenticate,
+  expense_controller.unblockUser
+);
+
+router.get(
+  "/admin/block-organization",
+  middlewares.authenticate,
+  expense_controller.blockOrganization
+);
+router.get(
+  "/admin/unblock-organization",
+  middlewares.authenticate,
+  expense_controller.unblockOrganization
+);
+
+router.get(
+  "/admin/approve-organization",
+  middlewares.authenticate,
+  expense_controller.approveOrganization
+);
+router.get(
+  "/admin/reject-organization",
+  middlewares.authenticate,
+  expense_controller.rejectOrganization
 );
 
 router.put(
   "/user/edit-profile",
   middlewares.authenticate,
   expense_controller.editUserProfile
+);
+router.put(
+  "/admin/edit-profile",
+  middlewares.authenticate,
+  expense_controller.editAdminProfile
 );
 router.put(
   "/org/edit-profile",
@@ -56,6 +114,11 @@ router.get(
   "/user/get-all-donations",
   middlewares.authenticate,
   expense_controller.getAllDonations
+);
+router.get(
+  "/admin/get-all-donations",
+  middlewares.authenticate,
+  expense_controller.adminGetAllDonations
 );
 router.get(
   "/user/get-received-donations",
@@ -93,69 +156,6 @@ router.get(
 router.post(
   "/password/resetpassword/updatepassword",
   reset_password_controller.update_password
-);
-
-// get-add-delete routes
-router.get(
-  "/expense/getexpenses",
-  middlewares.authenticate,
-  expense_controller.get_expenses
-);
-
-router.post(
-  "/expense/addexpense",
-  middlewares.authenticate,
-  expense_controller.add_expense
-);
-
-router.get(
-  "/expense/deleteexpense/:id",
-  middlewares.authenticate,
-  expense_controller.delete_expense
-);
-
-// Paypal routes
-router.get(
-  "/purchase/premium-membership",
-  middlewares.authenticate,
-  paypal_controller.purchase_premium
-);
-
-router.post(
-  "/purchase/premium-membership/update",
-  middlewares.authenticate,
-  paypal_controller.update
-);
-
-// Premium routes
-router.get(
-  "/premium/leaderboard",
-  middlewares.authenticate,
-  premium_controller.leaderboard
-);
-
-router.get(
-  "/premium/report/view/:date",
-  middlewares.authenticate,
-  premium_controller.view_report
-);
-
-router.get(
-  "/premium/download",
-  middlewares.authenticate,
-  premium_controller.download_expenses
-);
-
-router.post(
-  "/premium/download/history/save",
-  middlewares.authenticate,
-  premium_controller.download_history_save
-);
-
-router.get(
-  "/premium/download/history/get",
-  middlewares.authenticate,
-  premium_controller.download_history_get
 );
 
 // home and invalid routes

@@ -33,6 +33,7 @@ profile.addEventListener("click", async (event) => {
   try {
     event.preventDefault();
     searchBar.style.visibility = "hidden";
+    searchBar.value = "";
     const user = await axios.get(`${url}/org/profile`, {
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -236,6 +237,7 @@ async function transactionFail(order_id, payment_id) {
 organizations.addEventListener("click", async (event) => {
   event.preventDefault();
   searchBar.style.visibility = "visible";
+  searchBar.value = "";
   const user = await axios.get(`${url}/user/organizations`, {
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -342,7 +344,7 @@ function addOrganizationsToUi(data) {
 
   li.appendChild(button);
   ul.appendChild(li);
-  ul.style.display = "block";
+
   // li.addEventListener("click", async (event) => {
   //   event.preventDefault();
   //   newpage(li);
@@ -351,6 +353,7 @@ function addOrganizationsToUi(data) {
 donations.addEventListener("click", async (event) => {
   event.preventDefault();
   searchBar.style.visibility = "visible";
+  searchBar.value = "";
   const allDonations = await axios.get(`${url}/user/get-all-donations`, {
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -561,6 +564,7 @@ function addDonationsToUi(data) {
 donationsRec.addEventListener("click", async (event) => {
   event.preventDefault();
   searchBar.style.visibility = "visible";
+  searchBar.value = "";
   const allDonations = await axios.get(`${url}/user/get-received-donations`, {
     headers: {
       Authorization: localStorage.getItem("token"),

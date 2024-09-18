@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UnityAid - User Dashboard</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-left">
+        <h1>UnityAid</h1>
+      </div>
+      <div class="nav-right">
+        <input
+          type="text"
+          id="searchBar"
+          placeholder="Search"
+          style="padding: 5px; margin-left: 15px; visibility: hidden"
+        />
+        <a href="#profile" id="profile">Profile</a>
+        <a href="#users" id="allUsers">All Users</a>
+        <a href="#organizations" id="organizations">All Organizations</a>
+        <a href="#donations" id="donations">All Donations</a>
+        <a href="#approvals" id="approvals">Approvals</a>
+
+        <a href="#logout" id="logout">Logout</a>
+      </div>
+    </nav>
+
+    <ul id="plist"></ul>
+    <ul id="list"></ul>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="/admin/admin.js"></script>
+</html>
